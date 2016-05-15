@@ -1,0 +1,454 @@
+corporation:
+    IBM:
+        from: 1911-06-16
+        to: now
+        wiki: https://en.wikipedia.org/wiki/IBM
+    Intel:
+        from: 1968-07-18
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Intel
+    HP:
+        from: 1939-01-01
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Hewlett-Packard
+    Compaq:
+        from: 1982-02-00
+        to: 2002-00-00
+        end_reason: acquired by HP
+        wiki: https://en.wikipedia.org/wiki/Compaq
+    DEC:
+        from: 1957-00-00
+        to: 1998-06-00
+        end_reason: acquired by Compaq
+        wiki: https://en.wikipedia.org/wiki/Digital_Equipment_Corporation
+    Fujitsu:
+        from: 1935-06-20
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Fujitsu
+    Toshiba:
+        from: 1904-06-25
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Toshiba
+    Hitach:
+        from: 1920-02-01
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Hitachi
+    NEC:
+        from: 1900-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/NEC
+    EMC:
+        from: 1979-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/EMC_Corporation
+    VMware:
+        from: 1998-00-00
+        to: 2004-01-00
+        wiki: https://en.wikipedia.org/wiki/VMware
+        end_reason: acquired by EMC
+    Isilon:
+        from: 2001-00-00
+        to: 2011-11-05
+        wiki: https://en.wikipedia.org/wiki/EMC_Isilon
+        end_reason: acquired by EMC
+    AMD:
+        from: 1969-05-01
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Advanced_Micro_Devices
+    Western Digital:
+        from: 1970-04-23
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Western_Digital
+    SanDisk:
+        from: 1988-00-00
+        to: 2016-05-11
+        end_reason: acquired by Western Digital
+        wiki: https://en.wikipedia.org/wiki/SanDisk
+    Seagate:
+        from: 1979-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Seagate_Technology
+    Fusion-io:
+        from: 2005-00-00
+        to: 2014-07-00
+        end_reason: acquired by SanDisk
+        wiki: https://en.wikipedia.org/wiki/Fusion-io
+    PMC-Sierra:
+        from: 1984-00-00
+        to: 2016-01-15
+        end_reason: acquired by Microsemi
+        wiki: https://en.wikipedia.org/wiki/PMC-Sierra
+    Microsemi:
+        from: 1959-02-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Microsemi
+    Micron:
+        from: 1978-10-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Micron_Technology
+    Dell:
+        from: 1984-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Dell
+    Nvidia:
+        from: 1993-04-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Nvidia
+    ATI:
+        from: 1985-00-00
+        to: 2006-10-25
+        end_reason: acquired by AMD
+        wiki: https://en.wikipedia.org/wiki/ATI_Technologies
+    Sun Microsystems:
+        from: 1982-02-24
+        to: 2010-01-27
+        end_reason: acquired by Oracle
+        wiki: https://en.wikipedia.org/wiki/Sun_Microsystems
+    Oracle:
+        from: 1977-06-15
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Oracle_Corporation
+    Avago:
+        from: 2005-00-00
+        to: 2016-02-01
+        wiki: https://en.wikipedia.org/wiki/Broadcom_Limited
+        end_reason: change name to Broadcom
+    HGST:
+        from: 2003-01-06
+        to: 2011-03-07
+        wiki: https://en.wikipedia.org/wiki/HGST
+        end_reason: subsidiary of Western Digital
+    LSI Logic:
+        from: 1981-00-00
+        to: 2014-05-06
+        wiki: https://en.wikipedia.org/wiki/LSI_Corporation
+        end_reason: acquired by Avago
+    American Megatrend:
+        from: 1985-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/American_Megatrends
+    Cisco Systems:
+        from: 1984-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Cisco_Systems
+    Broadcom:
+        from: 1991-08-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Broadcom_Limited
+    Huawei:
+        from: 1988-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Huawei
+    Supermicro:
+        from: 1993-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Supermicro
+    Quanta:
+        from: 1988-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Quanta_Computer
+    Marvell:
+        from: 1995-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Marvell_Technology_Group
+    QLogic:
+        from: 1992-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/QLogic
+    Freescale:
+        from: 2004-00-00
+        to: 2015-12-07
+        wiki: https://en.wikipedia.org/wiki/Freescale_Semiconductor
+        end_reason: acquired by NXP
+    NXP:
+        from: 2006-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/NXP_Semiconductors
+    Hynix:
+        from: 1983-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/SK_Hynix
+    Elpida:
+        from: 1999-12-20
+        to: 2013-07-31
+        wiki: https://en.wikipedia.org/wiki/Elpida_Memory
+        end_reason: acquired by Micron
+    Tyan:
+        from: 1989-00-00
+        to: 2007-10-01
+        wiki: https://en.wikipedia.org/wiki/Tyan
+        end_reason: acquired by MiTAC
+    MiTAC:
+        from: 1982-12-08
+        to: now
+        wiki: https://en.wikipedia.org/wiki/MiTAC
+    EqualLogic:
+        from: 2001-00-00
+        to: 2008-01-00
+        wiki: https://en.wikipedia.org/wiki/EqualLogic
+        end_reason: acquired by Dell
+    Emulex:
+        from: 1978-00-00
+        to: 2015-02-00
+        wiki: https://en.wikipedia.org/wiki/Emulex
+        end_reason: acquired by Avago
+    Motrola:
+        from: 1928-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Motorola
+    SandForce:
+        from: 2006-00-00
+        to: 2012-01-04
+        wiki: https://en.wikipedia.org/wiki/SandForce
+        end_reason: acquired by LSI Logic
+    Maxtor:
+        from: 1982-00-00
+        to: 2006-00-00
+        wiki: https://en.wikipedia.org/wiki/Maxtor
+        end_reason: acquired by Seagate
+    Samsung:
+        from: 1938-05-01
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Samsung
+    Adaptec:
+        from: 1981-00-00
+        to: 2010-06-08
+        wiki: https://en.wikipedia.org/wiki/Adaptec
+        end_reason: acquired by Microsemi
+    Fabrik:
+        from: 2005-00-00
+        to: 2009-04-06
+        wiki: https://en.wikipedia.org/wiki/Fabrik_Inc.
+        end_reason: acquired by HGST
+    Lenovo:
+        from: 1984-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Lenovo
+    Quantum:
+        from: 1980-00-00
+        to: now
+        wiki: https://en.wikipedia.org/wiki/Quantum_Corporation
+# end corporation
+event:
+    DEC-Compaq:
+        desc: 'DEC was acquired by Compaq'
+        type: acquired
+        start_corp: DEC
+        end_corp: Compaq
+        date: DEC:end
+    Compaq-HP:
+        desc: 'Compaq was acquired by HP'
+        type: acquired
+        start_corp: Compaq
+        end_corp: HP
+        date: Compaq:end
+    VMware-EMC:
+        desc: 'VMware was acquired by EMC'
+        type: acquired
+        start_corp: VMware
+        end_corp: EMC
+        date: VMware:end
+    Isilon-EMC:
+        desc: 'Isilon was acquired by EMC'
+        type: acquired
+        start_corp: Isilon
+        end_corp: EMC
+        date: Isilon:end
+    SanDisk-WesternDigital:
+        desc: 'SanDisk was acquired by Western Digital'
+        type: acquired
+        start_corp: SanDisk
+        end_corp: Western Digital
+        date: SanDisk:end
+    Fusion-io-SanDisk:
+        desc: 'Fusion-io was acquired by SanDisk'
+        type: acquired
+        start_corp: Fusion-io
+        end_corp: SanDisk
+        date: Fusion-io:end
+    PMC-Sierra-Microsemi:
+        desc: 'PMC was acquired by Microsemi'
+        type: acquired
+        start_corp: PMC-Sierra
+        end_corp: Microsemi
+        date: PMC-Sierra:end
+    Adaptec-Microsemi:
+        desc: 'Adaptec was acquired by Microsemi'
+        type: acquired
+        start_corp: Adaptec
+        end_corp: Microsemi
+        date: Adaptec:end
+    ATI-AMD:
+        desc: 'ATI was acquired by AMD'
+        type: acquired
+        start_corp: ATI
+        end_corp: AMD
+        date: ATI:end
+    Sun-Oracle:
+        desc: 'Sun was acquired by Oracle'
+        type: acquired
+        start_corp: 'Sun Microsystems'
+        end_corp: Oracle
+        date: Sun Microsystems:end
+    Broadcom-Avago:
+        desc: 'Broadcom was acquired by Avago'
+        type: acquired
+        start_corp: Broadcom
+        end_corp: Avago
+        date: Avago:end
+    HGST-WD:
+        desc: 'HGST was acquired by WD'
+        type: subsidiary
+        start_corp: HGST
+        end_corp: Western Digital
+        date: HGST:end
+    Freescale-NXP:
+        desc: 'Freescale was acquired by NXP'
+        type: acquired
+        start_corp: Freescale
+        end_corp: NXP
+        date: Freescale:end
+    Elpida-Micron:
+        desc: 'Elpida was acquired by Micron'
+        type: acquired
+        start_corp: Elpida
+        end_corp: Micron
+        date: Elpida:end
+    Tyan-MiTAC:
+        desc: 'Tyan was acquired by MiTAC'
+        type: acquired
+        start_corp: Tyan
+        end_corp: MiTAC
+        date: Tyan:end
+    EqualLogic-Dell:
+        desc: 'EqualLogic was acquired by Dell'
+        type: acquired
+        start_corp: EqualLogic
+        end_corp: Dell
+        date: EqualLogic:end
+    Emulex-Avago:
+        desc: 'Emulex was acquired by Avago'
+        type: acquired
+        start_corp: Emulex
+        end_corp: Avago
+        date: Emulex:end
+    SandForce-LSI_Logic:
+        desc: 'SandForce was acquired by LSI Logic'
+        type: acquired
+        start_corp: SandForce
+        end_corp: LSI Logic
+        date: SandForce:end
+    LSI_Logic-Avago:
+        desc: 'LSI Logic was acquired by Avago'
+        type: acquired
+        start_corp: LSI Logic
+        end_corp: Avago
+        date: LSI Logic:end
+    Maxtor-Seagate:
+        desc: 'Maxtor was acquired by Seagate'
+        type: acquired
+        start_corp: Maxtor
+        end_corp: Seagate
+        date: Maxtor:end
+    Fabrik-Hitachi:
+        desc: 'Fabrik was acquired by HGST'
+        type: acquired
+        start_corp: Fabrik
+        end_corp: HGST
+        date: Fabrik:end
+    IBM-Lenovo-aquired-server:
+        desc: 'IBM server tech was acquired by Lenovo'
+        type: server tech acquired
+        start_corp: IBM
+        end_corp: Lenovo
+        date: 2014-00-00
+    Hitach-HGST:
+        desc: 'Hitach and IBM invested'
+        type: invest
+        start_corp: Hitach
+        end_corp: HGST
+        date: HGST:start
+    IBM-HGST:
+        desc: 'Hitach and IBM invested'
+        type: invest
+        start_corp: IBM
+        end_corp: HGST
+        date: HGST:start
+    Quantum-Maxtor:
+        desc: Quantum hdd was acquired by Maxtor'
+        type: hdd acquired
+        start_corp: Quantum
+        end_corp: Maxtor
+        date: 2000-10-00
+    Samsung-Seagate-hdd:
+        desc: Samsung hdd was acquired by Seagate'
+        type: hdd acquired
+        start_corp: Samsung
+        end_corp: Seagate
+        date: 2011-00-00
+    EMC-Dell:
+        desc: EMC was acquired by Dell
+        type: acquired
+        start_corp: EMC
+        end_corp: Dell
+        date: 2016-05-00
+    Avago-Seagate-acquire-SandForce:
+        desc: SandForce was acquired by Seagate
+        type: SandForce acquired
+        start_corp: Avago
+        end_corp: Seagate
+        date: 2014-05-29
+# end event
+corp_seq:
+    - IBM
+    - Lenovo
+    - Western Digital
+    - HGST
+    - Fabrik
+    - SanDisk
+    - Fusion-io
+    - Hitach
+    - Intel
+    - HP
+    - Compaq
+    - DEC
+    - Fujitsu
+    - Toshiba
+    - NEC
+    - Dell
+    - EqualLogic
+    - EMC
+    - VMware
+    - Isilon
+    - AMD
+    - ATI
+    - Seagate
+    - Maxtor
+    - Quantum
+    - Samsung
+    - Microsemi
+    - Adaptec
+    - PMC-Sierra
+    - Micron
+    - Elpida
+    - Nvidia
+    - Oracle
+    - Sun Microsystems
+    - Broadcom
+    - Avago
+    - Emulex
+    - LSI Logic
+    - SandForce
+    - American Megatrend
+    - Cisco Systems
+    - Huawei
+    - Supermicro
+    - Quanta
+    - Marvell
+    - QLogic
+    - NXP
+    - Freescale
+    - Hynix
+    - MiTAC
+    - Tyan
+    - Motrola
