@@ -1,4 +1,4 @@
 # CompCorpHist
 diagram of computer corporation
 
-Artifact is reviewed https://htmlpreview.github.io/?https://github.com/cskimura/CompCorpHist/blob/master/history.html
+Artifact is reviewed https://cskimura.github.io/CompCorpHist/history.html
