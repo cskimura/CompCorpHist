@@ -13,6 +13,105 @@ my $now = '2016-05-31';
 my $base_h = 40;
 
 
+# apend history to corp and event
+{
+    foreach my $history (@{$yaml->{history}}) {
+
+        if ($history =~ m/^(....-..-..) (Founded) (.+)$/i) {
+            my ($date, $event, $corp) = ($1, $2, $3);
+            my $url = undef;
+            if ($corp =~ m/^(.+)\((http\S+)\)$/) {
+                ($corp, $url) = ($1, $2);
+            }
+            $yaml->{corporation}{$corp}{wiki} = $url if defined $url;
+            if ($event eq 'Founded') {
+                $yaml->{corporation}{$corp}{from} = $date;
+                $yaml->{corporation}{$corp}{to} = 'now';
+            }
+        } elsif ($history =~ m/^(....-..-..) (\S+) declares (bankruptcy)$/i) {
+            my ($date, $corp, $event) = ($1, $2, $3);
+            $yaml->{corporation}{$corp}{to} = $date;
+            $yaml->{corporation}{$corp}{end_reason} = $event;
+        } elsif ($history =~ m/^(....-..-..) (Partnership of) (\S+) and (\S+)$/i) {
+            my ($date, $event, $corp1, $corp2) = ($1, $2, $3, $4);
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = 'partnership';
+            $yaml->{event}{$history}{start_corp} = $corp2;
+            $yaml->{event}{$history}{end_corp} = $corp1;
+            $yaml->{event}{$history}{date} = $date;
+        } elsif ($history =~ m/^(....-..-..) (.+) was (transfer) (.+) from (.+)$/i) {
+            my ($date, $corp1, $event, $business, $corp2) = ($1, $2, $3, $4, $5);
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = $business . ' ' . $event;
+            $yaml->{event}{$history}{start_corp} = $corp2;
+            $yaml->{event}{$history}{end_corp} = $corp1;
+            $yaml->{event}{$history}{date} = $date;
+        } elsif ($history =~ m/^(....-..-..) (.+) was (acquired) by (.+) from (.+)$/i) {
+            my ($date, $business, $event, $corp1, $corp2) = ($1, $2, $3, $4, $5);
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = $business . ' ' . $event;
+            $yaml->{event}{$history}{start_corp} = $corp2;
+            $yaml->{event}{$history}{end_corp} = $corp1;
+            $yaml->{event}{$history}{date} = $date;
+        } elsif ($history =~ m/^(....-..-..) (.+) was (acquired) by (.+)$/i) {
+            my ($date, $corp1, $event, $corp2) = ($1, $2, $3, $4);
+
+            # corp
+            $yaml->{corporation}{$corp1}{to} = $date;
+            $yaml->{corporation}{$corp1}{end_reason} = $event;
+
+            # event
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = $event;
+            $yaml->{event}{$history}{start_corp} = $corp1;
+            $yaml->{event}{$history}{end_corp} = $corp2;
+            $yaml->{event}{$history}{date} = $date;
+        } elsif ($history =~ m/^(....-..-..) (.+) was (invested) by (.+)$/i) {
+            my ($date, $corp1, $event, $corp2) = ($1, $2, $3, $4);
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = $event;
+            $yaml->{event}{$history}{start_corp} = $corp2;
+            $yaml->{event}{$history}{end_corp} = $corp1;
+            $yaml->{event}{$history}{date} = $date;
+        } elsif ($history =~ m/^(....-..-..) (.+) was (carved out) by (.+) as (.+)$/i) {
+            # 2006-05-01 Memory div was carved out by Infineon as Qimonda
+            my ($date, $div, $event, $corp1, $corp2) = ($1, $2, $3, $4, $5);
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = $event . ' ' . $div;
+            $yaml->{event}{$history}{start_corp} = $corp1;
+            $yaml->{event}{$history}{end_corp} = $corp2;
+            $yaml->{event}{$history}{date} = $date;
+        } elsif ($history =~ m/^(....-..-..) (.+) was (merged) to (.+)$/i) {
+            # 1998-09-28 Award was merged to Phoenix
+            my ($date, $corp1, $event, $corp2) = ($1, $2, $3, $4);
+
+            # corp
+            $yaml->{corporation}{$corp1}{to} = $date;
+            $yaml->{corporation}{$corp1}{end_reason} = $event;
+
+            # event
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = $event;
+            $yaml->{event}{$history}{start_corp} = $corp1;
+            $yaml->{event}{$history}{end_corp} = $corp2;
+            $yaml->{event}{$history}{date} = $date;
+        } elsif ($history =~ m/^(....-..-..) (.+) was (spun-off) from (.+)$/i) {
+            # 2002-00-00 ASRock was spun-off from Asus
+            my ($date, $corp1, $event, $corp2) = ($1, $2, $3, $4);
+
+            # event
+            $yaml->{event}{$history}{desc} = $history;
+            $yaml->{event}{$history}{type} = $event;
+            $yaml->{event}{$history}{start_corp} = $corp2;
+            $yaml->{event}{$history}{end_corp} = $corp1;
+            $yaml->{event}{$history}{date} = $date;
+        } else {
+            die "Could not parse history: $history";
+        }
+    }
+}
+
+
 # grok corp
 my $max_elapsed = 0;
 my $total_corp = 0;
@@ -53,6 +152,11 @@ my $total_corp = 0;
 
     push @outputs, sprintf('<svg height="%s" width="%s">', $max_height, 5000); # 3960 = (2020-1900+10) * 36
     push @outputs, '';
+    push @outputs, '<defs>';
+    push @outputs, '<marker id="arrow" markerWidth="10" markerHeight="10" refx="10" refy="3" orient="auto" markerUnits="strokeWidth">';
+    push @outputs, '<path d="M0,0 L0,6 L9,3 z" fill="#f00" />';
+    push @outputs, '</marker>';
+    push @outputs, '</defs>';
     push @outputs, '';
     push @outputs, '';
     push @outputs, '';
@@ -71,7 +175,7 @@ my $total_corp = 0;
     # define nodes
     foreach my $corp (keys %{$yaml->{corporation}}) {
 
-        my $height = $yaml->{corporation}{$corp}{height};
+        my $height = $yaml->{corporation}{$corp}{height} || die "Undefined height in corp_seq: $corp";
         my $start = $yaml->{corporation}{$corp}{from1900} * 3;
         my $end = $yaml->{corporation}{$corp}{to1900} * 3;
         my $end_reason = $yaml->{corporation}{$corp}{end_reason} || undef;
@@ -138,14 +242,15 @@ my $total_corp = 0;
 
         # event description
         push @outputs, sprintf('<text x="%s" y="%s" fill="red">%s</text>',
-            $end_x,
+            $end_x+1,
             $end_y + $up_down,
             $type);
-        push @outputs, sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" style="stroke:red;stroke-width:1" />',
+        push @outputs, sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" style="stroke:red;stroke-width:1" marker-end="url(#arrow)" />',
             $start_x,
             $start_y,
             $end_x,
             $end_y,);
+        die $event unless defined $start_y;
     }
 
 
