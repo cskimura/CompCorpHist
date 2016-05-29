@@ -406,7 +406,7 @@ history:
     - 2003-03-00 Elpida was transfer DRAM from Mitsubishi Electric
     - 2006-05-01 Founded Qimonda(https://en.wikipedia.org/wiki/Qimonda)
     - 2008-06-11 Partnership of Elpida and Qimonda
-    - 2009-01-23 Qimonda declares bankruptcy
+    - 2009-01-23 Qimonda declared bankruptcy
     - 1959-05-27 Founded National Semiconductor(https://en.wikipedia.org/wiki/National_Semiconductor)
     - 2011-09-23 National Semiconductor was acquired by Texas Instruments
     - 1930-00-00 Founded Texas Instruments(https://en.wikipedia.org/wiki/Texas_Instruments)
@@ -492,6 +492,103 @@ history:
     - 2006-00-00 Founded ZOTAC(https://en.wikipedia.org/wiki/Zotac)
     - 1973-07-23 Founded Nidec(https://en.wikipedia.org/wiki/Nidec)
     - 2002-11-01 Founded Renesas(https://en.wikipedia.org/wiki/Renesas_Electronics)
+    - 2001-00-00 Founded Cavium(https://en.wikipedia.org/wiki/Cavium)
+    - 1998-09-07 Founded MontaVista(https://en.wikipedia.org/wiki/MontaVista)
+    - 2009-01-00 MontaVista was acquired by Cavium
+    - 2014-07-00 Xpliant was acquired by Cavium
+    - 2008-08-00 Star Semiconductor was acquired by Cavium
+    - 2008-12-00 W&W Communications was acquired by Cavium
+    - 2011-01-00 Celestial Semiconductor was acquired by Cavium
+    - 1872-00-00 Founded Alcatel
+    - 1870-00-00 Founded Lucent
+    - 2006-11-30 Founded Alcatel-Lucent(https://en.wikipedia.org/wiki/Alcatel-Lucent)
+    - 2006-11-30 Alcatel was merged to Alcatel-Lucent
+    - 2006-11-30 Lucent was merged to Alcatel-Lucent
+    - 1865-05-12 Founded Nokia(https://en.wikipedia.org/wiki/Nokia)
+    - 2016-01-00 Alcatel-Lucent was acquired by Nokia
+    - 1998-00-00 Founded Symbian(https://en.wikipedia.org/wiki/Symbian_Ltd.)
+    - 2008-12-02 Symbian was acquired by Nokia
+    - 2002-00-00 Founded Aruba(https://en.wikipedia.org/wiki/Aruba_Networks)
+    - 2015-05-19 Aruba was acquired by HP
+    - 1989-00-00 Founded Citrix(https://en.wikipedia.org/wiki/Citrix_Systems)
+    - 2004-00-00 ExpertCity was acquired by Citrix
+    - 2005-00-00 NetScaler was acquired by Citrix
+    - 2007-00-00 XenSource was acquired by Citrix
+    - 2011-00-00 ShareFile was acquired by Citrix
+    - 1996-02-26 Founded F5(https://en.wikipedia.org/wiki/F5_Networks)
+    - 2013-00-00 LineRate was acquired by F5
+    - 1985-00-00 Founded Qualcomm(https://en.wikipedia.org/wiki/Qualcomm)
+    - 1991-00-00 Founded SonicWall(https://en.wikipedia.org/wiki/SonicWall)
+    - 2012-03-13 SonicWall was acquired by Dell
+    - 1988-00-00 Founded Promise(https://en.wikipedia.org/wiki/Promise_Technology)
+    - 2004-00-00 Founded Chelsio(https://en.wikipedia.org/wiki/Chelsio_Communications)
+    - 1979-00-00 Founded AppliedMicro(https://en.wikipedia.org/wiki/Applied_Micro_Circuits_Corporation)
+    - 2004-04-00 3ware was acquired by AppliedMicro
+    - 2006-08-00 Quake Technologies was acquired by AppliedMicro
+    - 2003-00-00 Founded Diablo
+    - 1999-00-00 Founded Areca(http://www.areca.com.tw)
+    - 1988-00-00 Founded ATTO(https://en.wikipedia.org/wiki/ATTO_Technology)
+    - 1983-00-00 Founded Iomega(https://en.wikipedia.org/wiki/LenovoEMC)
+    - 2008-06-00 Iomega was acquired by EMC
+    - 1996-00-00 Founded Foundry(https://en.wikipedia.org/wiki/Foundry_Networks)
+    - 2008-12-18 Foundry was acquired by Brocade
+    - 1995-00-00 Founded Brocade(https://en.wikipedia.org/wiki/Brocade_Communications_Systems)
+    - 2005-00-00 Founded Vyatta(https://en.wikipedia.org/wiki/Vyatta)
+    - 2012-00-00 Vyatta was acquired by Brocade
+    - 1895-00-00 Founded Nortel
+    - 2000-00-00 Founded Avaya(https://en.wikipedia.org/wiki/Avaya)
+    - 2004-10-00 Founded Arista(https://en.wikipedia.org/wiki/Arista_Networks)
+    - 2007-00-00 Founded SeaMicro(https://en.wikipedia.org/wiki/SeaMicro)
+    - 2012-00-00 SeaMicro was acquired by AMD
+    - 1980-00-00 Founded Apollo(https://en.wikipedia.org/wiki/Apollo_Computer)
+    - 1989-00-00 Apollo was acquired by HP
+    - 1979-00-00 Founded 3Com(https://en.wikipedia.org/wiki/3Com)
+    - 2010-04-12 3Com was acquired by HP
+    - 1992-00-00 Founded Palm(https://en.wikipedia.org/wiki/Palm,_Inc.)
+    - 2010-07-01 Palm was acquired by HP
+    - 1999-00-00 Founded 3PAR(https://en.wikipedia.org/wiki/HP_3PAR)
+    - 2010-09-27 3PAR was acquired by HP
+    - 2001-00-00 Founded Data Domain(https://en.wikipedia.org/wiki/Data_Domain_(corporation))
+    - 2009-07-00 Data Domain was acquired by EMC
+    - 1991-11-12 Founded HCL(https://en.wikipedia.org/wiki/HCL_Technologies)
+    - 1972-00-00 Founded SAP(https://en.wikipedia.org/wiki/SAP_SE)
+    - 1906-00-00 Founded Xerox(https://en.wikipedia.org/wiki/Xerox)
+    - 1961-00-00 Founded SDS(https://en.wikipedia.org/wiki/Scientific_Data_Systems)
+    - 1969-00-00 SDS was acquired by Xerox
+    - 2009-00-00 Founded Pure Storage(https://en.wikipedia.org/wiki/Pure_Storage)
+    - 2005-00-00 Founded Violin Memory(https://en.wikipedia.org/wiki/Violin_Memory)
+    - 2005-00-00 Founded Palo Alto(https://en.wikipedia.org/wiki/Palo_Alto_Networks)
+    - 2004-00-00 Founded FireEye(https://en.wikipedia.org/wiki/FireEye)
+    - 2000-00-00 Founded Fortinet(https://en.wikipedia.org/wiki/Fortinet)
+    - 2009-00-00 Founded Pica8(https://en.wikipedia.org/wiki/Pica8)
+    - 1988-00-00 Founded Accton(http://www.accton.com/)
+    - 1999-00-00 Founded Mellanox(https://en.wikipedia.org/wiki/Mellanox_Technologies)
+    - 1999-00-00 Founded EZchip(https://en.wikipedia.org/wiki/EZchip_Semiconductor)
+    - 2016-02-23 EZchip was acquired by Mellanox
+    - 2004-10-00 Founded Tilera(https://en.wikipedia.org/wiki/Tilera)
+    - 2014-07-00 Tilera was acquired by EZchip
+    - 1996-00-00 Founded MikroTik(https://en.wikipedia.org/wiki/MikroTik)
+    - 2008-00-00 Founded Calxeda(https://en.wikipedia.org/wiki/Calxeda)
+    - 2013-12-10 Defunct Calxeda
+    - 2013-07-00 Kotura was acquired by Mellanox
+    - 2003-00-00 Founded IPtronics(https://en.wikipedia.org/wiki/IPtronics)
+    - 2013-06-04 IPtronics was acquired by Mellanox
+    - 2011-02-07 Voltaire was acquired by Mellanox
+    - 1989-00-00 Founded AHA(http://www.aha.com/)
+    - 1997-00-00 Founded Radware(https://en.wikipedia.org/wiki/Radware)
+    - 2002-03-23 Founded Riverbed
+    - 1982-00-00 Founded RSA Security(https://en.wikipedia.org/wiki/RSA_Security)
+    - 2006-09-14 RSA Security was acquired by EMC
+    - 1996-00-00 Founded Alteon(https://en.wikipedia.org/wiki/Alteon_WebSystems)
+    - 2000-10-04 Alteon was acquired by Nortel
+    - 2009-02-22 Alteon was acquired by Radware from Nortel
+    - 2009-01-00 Nortel declared bankruptcy
+    - 2007-00-00 Founded Nokia Networks(https://en.wikipedia.org/wiki/Nokia_Networks)
+    - 2007-00-00 Nokia Networks was invested by Nokia
+    - 2007-00-00 Nokia Networks was invested by Siemens AG
+    - 2009-07-21 CDMA and LTE was acquired by Nokia Networks from Nortel
+    - 2009-07-21 Enterprise business was acquired by Avaya from Nortel
+
 
 corp_seq:
     - IBM
@@ -499,6 +596,7 @@ corp_seq:
     - Western Digital
     - HGST
     - Fabrik
+    - Diablo
     - SanDisk
     - Fusion-io
     - Hitach
@@ -525,16 +623,26 @@ corp_seq:
     - AMD
     - Alchemy
     - ATI
+    - SeaMicro
     - Toshiba
     - HP
     - Compaq
     - DEC
+    - Aruba
+    - 3Com
+    - Palm
+    - 3PAR
+    - Apollo
     - NEC
     - Dell
     - EqualLogic
+    - SonicWall
     - EMC
     - VMware
+    - RSA Security
+    - Iomega
     - Isilon
+    - Data Domain
     - Seagate
     - Maxtor
     - Quantum
@@ -579,9 +687,19 @@ corp_seq:
     - Emerson
     - Avocent
     - Lite-On
+    - Acer
     - BenQ
     - Siemens AG
-    - Acer
+    - Nokia Networks
+    - Symbian
+    - Nokia
+    - Alcatel
+    - Alcatel-Lucent
+    - Lucent
+    - Nortel
+    - Alteon
+    - Radware
+    - Avaya
     - AcBel
     - Murata Manufacturing
     - TDK-Lambda
@@ -602,4 +720,52 @@ corp_seq:
     - ZOTAC
     - Nidec
     - Renesas
+    - Cavium
+    - Xpliant
+    - Celestial Semiconductor
+    - MontaVista
+    - W&W Communications
+    - Star Semiconductor
+    - AHA
+    - Citrix
+    - ExpertCity
+    - NetScaler
+    - XenSource
+    - ShareFile
+    - F5
+    - LineRate
+    - Qualcomm
+    - Promise
+    - AppliedMicro
+    - 3ware
+    - Quake Technologies
+    - Chelsio
+    - Areca
+    - ATTO
+    - Brocade
+    - Foundry
+    - Vyatta
+    - Arista
+    - HCL
+    - SAP
+    - Xerox
+    - SDS
+    - Pure Storage
+    - Violin Memory
+    - Palo Alto
+    - FireEye
+    - Fortinet
+    - Pica8
+    - Accton
+    - Mellanox
+    - Kotura
+    - IPtronics
+    - Voltaire
+    - EZchip
+    - Tilera
+    - MikroTik
+    - Calxeda
+    - Riverbed
 
+
+memo:

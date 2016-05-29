@@ -8,7 +8,7 @@ use YAML::Tiny;
 use Data::Dumper;
 
 my $yaml = YAML::Tiny->read('./define.yaml')->[0];
-my $now = '2016-05-31';
+my $now = '2017-00-00';
 
 my $base_h = 40;
 
@@ -28,8 +28,12 @@ my $base_h = 40;
                 $yaml->{corporation}{$corp}{from} = $date;
                 $yaml->{corporation}{$corp}{to} = 'now';
             }
-        } elsif ($history =~ m/^(....-..-..) (\S+) declares (bankruptcy)$/i) {
+        } elsif ($history =~ m/^(....-..-..) (\S+) declared (bankruptcy)$/i) {
             my ($date, $corp, $event) = ($1, $2, $3);
+            $yaml->{corporation}{$corp}{to} = $date;
+            $yaml->{corporation}{$corp}{end_reason} = $event;
+        } elsif ($history =~ m/^(....-..-..) (Defunct) (.+)$/i) {
+            my ($date, $corp, $event) = ($1, $3, $2);
             $yaml->{corporation}{$corp}{to} = $date;
             $yaml->{corporation}{$corp}{end_reason} = $event;
         } elsif ($history =~ m/^(....-..-..) (Partnership of) (\S+) and (\S+)$/i) {
@@ -117,12 +121,17 @@ my $max_elapsed = 0;
 my $total_corp = 0;
 {
     foreach my $corp (@{$yaml->{corp_seq}}) {
-        my $from = $yaml->{corporation}{$corp}{from};
+        my $from = $yaml->{corporation}{$corp}{from} || undef;
         my $to = $yaml->{corporation}{$corp}{to} || die "Please check corp: $corp";
         if ($to eq 'now') {
             $to = $now;
         }
 
+        $yaml->{corporation}{$corp}{unknown_founded} = 0;
+        unless (defined $from) {
+            $from = minus_year($to, 10);
+            $yaml->{corporation}{$corp}{unknown_founded} = 1;
+        }
         $yaml->{corporation}{$corp}{from1900} = epoch1900($from);
         $yaml->{corporation}{$corp}{to1900} = epoch1900($to);
 
@@ -182,12 +191,13 @@ my $total_corp = 0;
         my $end_corp = $corp;
         $end_corp .= "($end_reason)" if defined $end_reason;
         my $wiki = $yaml->{corporation}{$corp}{wiki} || undef;
+        my $unknown_founded = $yaml->{corporation}{$corp}{unknown_founded} || 0;
 
         # corp name
         push @outputs, sprintf('<a xlink:href="%s">',
             $wiki) if defined $wiki;
         push @outputs, sprintf('<text x="%s" y="%s" fill="black">%s</text>',
-            $start,
+            $start + 3,
             $height,
             $corp,);
         push @outputs, sprintf('<text x="%s" y="%s" fill="black">%s</text>',
@@ -196,11 +206,15 @@ my $total_corp = 0;
             $end_corp,);
         push @outputs, '</a>' if defined $wiki;
         # corp line
-        push @outputs, sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" style="stroke:black;stroke-width:2" />',
+        my $dasharray = '';
+        $dasharray = 'stroke-dasharray="4 10"' if ($unknown_founded);
+        push @outputs, sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" style="stroke:black;stroke-width:2" %s />',
             $start,
             $height,
             $end,
-            $height,);
+            $height,
+            $dasharray,
+        );
 
 
     }
@@ -242,7 +256,7 @@ my $total_corp = 0;
 
         # event description
         push @outputs, sprintf('<text x="%s" y="%s" fill="red">%s</text>',
-            $end_x+1,
+            $end_x+2,
             $end_y + $up_down,
             $type);
         push @outputs, sprintf('<line x1="%s" y1="%s" x2="%s" y2="%s" style="stroke:red;stroke-width:1" marker-end="url(#arrow)" />',
@@ -250,6 +264,10 @@ my $total_corp = 0;
             $start_y,
             $end_x,
             $end_y,);
+        push @outputs, sprintf('<circle cx="%s" cy="%s" r="3" fill="red" />',
+            $start_x,
+            $start_y,
+            );
         die $event unless defined $start_y;
     }
 
@@ -272,11 +290,21 @@ sub epoch1900 {
 
     if ($date =~ m/(....)-(..)-(..)/) {
         my ($y, $m, $d) = ($1, $2, $3);
+        $y = 1900 if ($y < 1900); # truncate
         my $epoch = ($y-1900)*12 + $m;
         return $epoch;
     } else {
         return 0;
     }
+}
+
+sub minus_year {
+    my ($date, $year) = @_;
+
+    if ($date =~ m/^(....)-(..)-(..)$/) {
+        return join('-', ($1-$year,$2,$3));
+    }
+    return $date;
 }
 
 sub _write_file {
