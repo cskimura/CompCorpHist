@@ -236,6 +236,10 @@ corporation:
         from: 2002-00-00
         to: 2009-00-00
         wiki: https://www.crunchbase.com/organization/netxen
+    Kalpana:
+        from: 1987-00-00
+        to: 1994-10-24
+        wiki: https://en.wikipedia.org/wiki/Kalpana_(company)
 # end corporation
 event:
     DEC-Compaq:
@@ -606,6 +610,38 @@ history:
     - 2009-00-00 NetXen was acquired by QLogic
     - 2016-06-00 QLogic was acquired by Cavium
     - 2000-00-00 Founded Inspur(https://en.wikipedia.org/wiki/Inspur)
+    - 2001-00-00 Founded SourceFire(https://en.wikipedia.org/wiki/Sourcefire)
+    - 2013-07-23 SourceFire was acquired by Cisco Systems
+    - 2002-00-00 Founded Airespace(https://en.wikipedia.org/wiki/Airespace)
+    - 2005-01-12 Airespace was acquired by Cisco Systems
+    - 1988-00-00 Founded Linksys(https://en.wikipedia.org/wiki/Linksys)
+    - 2003-00-00 Linksys was acquired by Cisco Systems
+    - 1983-04-18 Founded Belkin(https://en.wikipedia.org/wiki/Belkin)
+    - 2013-01-00 Linksys was acquired by Belkin from Cisco Systems
+    - 1990-00-00 Founded Crescendo Communications
+    - 1993-09-24 LAN switching(Catalyst 5000,6000) was acquired by Cisco Systems from Crescendo Communications
+    - 1992-00-00 Founded Grand Junction Networks
+    - 1995-09-06 LAN switching(Catalyst 1700,1900,2800) was acquired by Cisco Systems from Grand Junction Networks
+    - 1994-10-24 Catalyst 3000 was acquired by Cisco Systems from Kalpana
+    - 1993-00-00 Founded Nashoba Networks
+    - 1996-08-06 Nashoba Networks was acquired by Cisco Systems
+    - 1993-00-00 Founded Granite Systems
+    - 1996-09-03 Granite Systems was acquired by Cisco Systems
+    - 1996-12-00 Founded Metaplex
+    - 1996-12-00 Metaplex was acquired by Cisco Systems
+    - 2006-00-00 Founded Meraki(https://en.wikipedia.org/wiki/Cisco_Meraki)
+    - 2012-12-00 Meraki was acquired by Cisco Systems
+    - 1999-08-31 Networking Hardware Division was acquired by Cisco Systems from IBM
+    - 1986-00-00 Founded Aironet(https://en.wikipedia.org/wiki/Aironet_Wireless_Communications)
+    - 1999-11-09 Aironet was acquired by Cisco Systems
+    - 1981-00-00 Founded APC(https://en.wikipedia.org/wiki/APC_by_Schneider_Electric)
+    - 1836-00-00 Founded Schneider Electric(https://en.wikipedia.org/wiki/Schneider_Electric)
+    - 2007-02-14 APC was acquired by Schneider Electric
+    - 2014-00-00 NIC was acquired by QLogic from Broadcom
+    - 1991-00-00 Founded ServerWorks
+    - 2001-01-00 ServerWorks was acquired by Broadcom
+    - 2008-08-00 Xilleon was acquired by Broadcom from AMD
+    - 2016-09-02 Brocade was acquired by Broadcom
 
 
 corp_seq:
@@ -667,6 +703,7 @@ corp_seq:
     - Samsung
     - Broadcom
     - Avago
+    - ServerWorks
     - Emulex
     - LSI Logic
     - SandForce
@@ -677,7 +714,19 @@ corp_seq:
     - Oracle
     - Sun Microsystems
     - American Megatrend
+    - Belkin
+    - Grand Junction Networks
+    - Crescendo Communications
+    - Kalpana
+    - Nashoba Networks
+    - Granite Systems
+    - Metaplex
     - Cisco Systems
+    - Meraki
+    - Aironet
+    - Linksys
+    - Airespace
+    - SourceFire
     - Huawei
     - Supermicro
     - Quanta
@@ -737,12 +786,12 @@ corp_seq:
     - ZOTAC
     - Nidec
     - Renesas
-    - Vyatta
-    - Foundry
-    - Brocade
     - NetXen
     - Troika Networks
     - QLogic
+    - Vyatta
+    - Foundry
+    - Brocade
     - Cavium
     - Xpliant
     - Celestial Semiconductor
@@ -787,6 +836,8 @@ corp_seq:
     - Calxeda
     - Riverbed
     - Inspur
+    - APC
+    - Schneider Electric
 
 
 memo:
