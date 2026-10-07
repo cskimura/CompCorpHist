@@ -22,7 +22,8 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/Advanced_Micro_Devices"
     "AOPEN":
         from: "1996-00-00"
-        to: "now"
+        to: "2017-11-00"
+        end_reason: "subsidiary of Acer (51% stake)"
         wiki: "https://en.wikipedia.org/wiki/AOpen"
     "ASRock":
         from: "2002-00-00"
@@ -91,9 +92,14 @@ corporation:
         to: "1989-00-00"
         end_reason: "acquired"
         wiki: "https://en.wikipedia.org/wiki/Apollo_Computer"
+    "MACOM Technology Solutions":
+        from: "1950-00-00"
+        to: "now"
+        wiki: "https://en.wikipedia.org/wiki/MACOM"
     "AppliedMicro":
         from: "1979-00-00"
-        to: "now"
+        to: "2017-01-26"
+        end_reason: "acquired by MACOM Technology Solutions"
         wiki: "https://en.wikipedia.org/wiki/Applied_Micro_Circuits_Corporation"
     "Areca":
         from: "1999-00-00"
@@ -183,7 +189,8 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/Cisco_Systems"
     "Citrix":
         from: "1989-00-00"
-        to: "now"
+        to: "2022-09-00"
+        end_reason: "taken private by Vista Equity Partners / Evergreen Coast Capital"
         wiki: "https://en.wikipedia.org/wiki/Citrix_Systems"
     "Compaq":
         from: "1982-02-00"
@@ -207,7 +214,8 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/Digital_Equipment_Corporation"
     "DFI":
         from: "1981-00-00"
-        to: "now"
+        to: "2017-10-31"
+        end_reason: "subsidiary of BenQ Group (Qisda)"
         wiki: "https://en.wikipedia.org/wiki/DFI"
     "Data Domain":
         from: "2001-00-00"
@@ -254,6 +262,10 @@ corporation:
         to: "2015-04-17"
         end_reason: "acquired"
         wiki: "http://www.eltek.com/"
+    "Copeland":
+        from: "2023-06-01"
+        to: "now"
+        wiki: "https://en.wikipedia.org/wiki/Copeland_(company)"
     "Emerson":
         from: "1900-00-00"
         to: "now"
@@ -455,6 +467,10 @@ corporation:
         from: "1976-00-00"
         to: "now"
         wiki: "https://en.wikipedia.org/wiki/Matrox"
+    "Zebra Technologies":
+        from: "1969-00-00"
+        to: "now"
+        wiki: "https://en.wikipedia.org/wiki/Zebra_Technologies"
     "Maxtor":
         from: "1982-00-00"
         to: "2006-00-00"
@@ -703,6 +719,10 @@ corporation:
         from: "1847-10-12"
         to: "now"
         wiki: "https://en.wikipedia.org/wiki/Siemens"
+    "Siemens Energy":
+        from: "2020-09-28"
+        to: "now"
+        wiki: "https://en.wikipedia.org/wiki/Siemens_Energy"
     "Silicon Hive":
         from: "2003-00-00"
         to: "2011-03-17"
@@ -739,9 +759,14 @@ corporation:
         to: "2008-12-02"
         end_reason: "acquired"
         wiki: "https://en.wikipedia.org/wiki/Symbian_Ltd."
+    "TDK":
+        from: "1935-12-07"
+        to: "now"
+        wiki: "https://en.wikipedia.org/wiki/TDK"
     "TDK-Lambda":
         from: "1978-06-06"
-        to: "now"
+        to: "2019-10-01"
+        end_reason: "subsidiary of TDK Corporation"
     "Texas Instruments":
         from: "1930-00-00"
         to: "now"
@@ -1424,3 +1449,43 @@ event:
       label: "SanDisk was spun off from Western Digital"
       source: "Western Digital"
       target: "SanDisk Corporation (2025)"
+    - date: "AppliedMicro:end"
+      kind: "acquired"
+      label: "AppliedMicro was acquired by MACOM"
+      source: "AppliedMicro"
+      target: "MACOM Technology Solutions"
+    - date: "2022-06-03"
+      kind: "divested"
+      label: "Matrox Imaging division was acquired by Zebra Technologies"
+      source: "Matrox"
+      target: "Zebra Technologies"
+    - date: "TDK-Lambda:end"
+      kind: "subsidiary"
+      label: "TDK-Lambda became a wholly-owned subsidiary of TDK"
+      source: "TDK-Lambda"
+      target: "TDK"
+    - date: "2026-04-28"
+      kind: "divested"
+      label: "Phoenix Technologies firmware business was acquired by Lenovo"
+      source: "Phoenix"
+      target: "Lenovo"
+    - date: "Siemens Energy:start"
+      kind: "spun-off"
+      label: "Siemens Energy was spun off from Siemens AG"
+      source: "Siemens AG"
+      target: "Siemens Energy"
+    - date: "DFI:end"
+      kind: "subsidiary"
+      label: "DFI became a majority-owned subsidiary of BenQ Group (Qisda)"
+      source: "DFI"
+      target: "BenQ"
+    - date: "AOPEN:end"
+      kind: "subsidiary"
+      label: "AOPEN became a majority-owned subsidiary of Acer"
+      source: "AOPEN"
+      target: "Acer"
+    - date: "Copeland:start"
+      kind: "divested"
+      label: "Emerson's Climate Technologies business was sold to Copeland (Blackstone)"
+      source: "Emerson"
+      target: "Copeland"
