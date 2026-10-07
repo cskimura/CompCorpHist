@@ -305,7 +305,7 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/HCL_Technologies"
     "HGST":
         from: "2003-01-06"
-        to: "2011-03-07"
+        to: "2012-03-08"
         end_reason: "subsidiary of Western Digital"
         wiki: "https://en.wikipedia.org/wiki/HGST"
     "HP":
@@ -364,7 +364,7 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/LenovoEMC"
     "Isilon":
         from: "2001-00-00"
-        to: "2011-11-05"
+        to: "2010-12-20"
         end_reason: "acquired by EMC"
         wiki: "https://en.wikipedia.org/wiki/EMC_Isilon"
     "Juniper":
@@ -426,7 +426,7 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/Maxtor"
     "McAfee":
         from: "1987-00-00"
-        to: "2011-03-02"
+        to: "2011-02-28"
         end_reason: "acquired"
         wiki: "https://en.wikipedia.org/wiki/Intel_Security"
     "Mellanox":
@@ -771,7 +771,7 @@ event:
       label: "DEC was acquired by Compaq"
       source: "DEC"
       target: "Compaq"
-    - date: "2016-05-00"
+    - date: "2016-09-07"
       kind: "acquired"
       label: "EMC was acquired by Dell"
       source: "EMC"
@@ -956,7 +956,7 @@ event:
       label: "DRAM was acquired by Micron from Texas Instruments"
       source: "Texas Instruments"
       target: "Micron"
-    - date: "2011-03-02"
+    - date: "2011-02-28"
       kind: "acquired"
       label: "McAfee was acquired by Intel"
       source: "McAfee"
@@ -966,7 +966,7 @@ event:
       label: "Memory was carved out by Infineon as Qimonda"
       source: "Infineon"
       target: "Qimonda"
-    - date: "2010-08-30"
+    - date: "2011-01-31"
       kind: "acquired"
       label: "Wireless was acquired by Intel from Infineon"
       source: "Infineon"
@@ -1251,7 +1251,7 @@ event:
       label: "CDMA and LTE was acquired by Nokia Networks from Nortel"
       source: "Nortel"
       target: "Nokia Networks"
-    - date: "2009-07-21"
+    - date: "2009-12-18"
       kind: "acquired"
       label: "Enterprise business was acquired by Avaya from Nortel"
       source: "Nortel"
