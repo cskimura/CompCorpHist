@@ -82,6 +82,10 @@ corporation:
         from: "1985-00-00"
         to: "now"
         wiki: "https://en.wikipedia.org/wiki/American_Megatrends"
+        renames:
+            - date: "2020-02-19"
+              name: "AMI, Inc."
+              wiki: "https://en.wikipedia.org/wiki/AMI_(company)"
     "Apollo":
         from: "1980-00-00"
         to: "1989-00-00"
@@ -148,7 +152,8 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/Broadcom_Corporation"
     "Brocade":
         from: "1995-00-00"
-        to: "now"
+        to: "2017-11-17"
+        end_reason: "acquired by Broadcom Inc."
         wiki: "https://en.wikipedia.org/wiki/Brocade_Communications_Systems"
     "Calxeda":
         from: "2008-00-00"
@@ -707,9 +712,15 @@ corporation:
         to: "2012-05-09"
         end_reason: "acquired"
         wiki: "https://en.wikipedia.org/wiki/SonicWall"
+    "Cypress Semiconductor":
+        from: "1982-00-00"
+        to: "2020-04-16"
+        end_reason: "acquired by Infineon"
+        wiki: "https://en.wikipedia.org/wiki/Cypress_Semiconductor"
     "Spansion":
         from: "1993-00-00"
-        to: "now"
+        to: "2015-03-12"
+        end_reason: "merged into Cypress Semiconductor"
         wiki: "https://en.wikipedia.org/wiki/Spansion"
     "Star Semiconductor":
         to: "2008-08-00"
@@ -742,7 +753,8 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/Tilera"
     "Toshiba":
         from: "1904-06-25"
-        to: "now"
+        to: "2023-12-20"
+        end_reason: "taken private by Japan Industrial Partners consortium"
         wiki: "https://en.wikipedia.org/wiki/Toshiba"
     "Tyan":
         from: "1989-00-00"
@@ -759,7 +771,8 @@ corporation:
         wiki: "https://en.wikipedia.org/wiki/VMware"
     "Violin Memory":
         from: "2005-00-00"
-        to: "now"
+        to: "2016-12-01"
+        end_reason: "bankruptcy"
         wiki: "https://en.wikipedia.org/wiki/Violin_Memory"
     "Voltaire":
         to: "2011-02-07"
@@ -772,6 +785,10 @@ corporation:
     "W&W Communications":
         to: "2008-12-00"
         end_reason: "acquired"
+    "SanDisk Corporation (2025)":
+        from: "2025-02-21"
+        to: "now"
+        wiki: "https://en.wikipedia.org/wiki/SanDisk"
     "Western Digital":
         from: "1970-04-23"
         to: "now"
@@ -1387,3 +1404,23 @@ event:
       label: "Lucent was spun off from AT&T"
       source: "AT&T"
       target: "Lucent"
+    - date: "Brocade:end"
+      kind: "acquired"
+      label: "Brocade was acquired by Broadcom Inc."
+      source: "Brocade"
+      target: "Avago"
+    - date: "Spansion:end"
+      kind: "merged"
+      label: "Spansion was merged into Cypress Semiconductor"
+      source: "Spansion"
+      target: "Cypress Semiconductor"
+    - date: "Cypress Semiconductor:end"
+      kind: "acquired"
+      label: "Cypress Semiconductor was acquired by Infineon"
+      source: "Cypress Semiconductor"
+      target: "Infineon"
+    - date: "SanDisk Corporation (2025):start"
+      kind: "spun-off"
+      label: "SanDisk was spun off from Western Digital"
+      source: "Western Digital"
+      target: "SanDisk Corporation (2025)"
