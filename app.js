@@ -17,7 +17,11 @@ const KIND_STYLE = {
   partnership: { color: '#e08e0b', dash: '2 3',    width: 1.5 },
   transfer:    { color: '#8a5a2b', dash: null,     width: 1.5 },
   subsidiary:  { color: '#6b7280', dash: '6 4',    width: 1.5 },
+  // a business unit changes hands but neither corporation's lifeline ends
+  divested:    { color: '#5b7fa6', dash: '3 3',    width: 1.5 },
 };
+
+const RENAME_COLOR = '#444';
 
 main();
 
@@ -230,10 +234,10 @@ function render(corporation, events, order, nowStr) {
     });
     g.appendChild(line);
 
-    const wrapIfWiki = el => {
-      if (!c.wiki) return el;
+    const wrapIfWiki = (el, wiki) => {
+      if (!wiki) return el;
       const a = svgEl('a');
-      a.setAttributeNS(XLINK_NS, 'href', c.wiki);
+      a.setAttributeNS(XLINK_NS, 'href', wiki);
       a.setAttribute('target', '_blank');
       a.appendChild(el);
       return a;
@@ -241,12 +245,28 @@ function render(corporation, events, order, nowStr) {
 
     const labelStart = svgEl('text', { x: x1 + 3, y: y - 4, class: 'corp-label' });
     labelStart.textContent = name;
-    g.appendChild(wrapIfWiki(labelStart));
+    g.appendChild(wrapIfWiki(labelStart, c.wiki));
 
-    const endLabel = c.end_reason ? `${name} (${c.end_reason})` : name;
+    // if the company was renamed, the lifeline keeps going but the end
+    // label and its link should reflect the most recent name.
+    const renames = c.renames || [];
+    const latest = renames[renames.length - 1];
+    const currentName = latest ? latest.name : name;
+    const currentWiki = latest ? (latest.wiki || c.wiki) : c.wiki;
+    const endLabel = c.end_reason ? `${currentName} (${c.end_reason})` : currentName;
     const labelEnd = svgEl('text', { x: x2 + 3, y: y - 4, class: 'corp-label' });
     labelEnd.textContent = endLabel;
-    g.appendChild(wrapIfWiki(labelEnd));
+    g.appendChild(wrapIfWiki(labelEnd, currentWiki));
+
+    for (const r of renames) {
+      const rx = colX1900(epoch1900(r.date));
+      g.appendChild(svgEl('line', {
+        x1: rx, y1: y - 6, x2: rx, y2: y + 6, class: 'rename-tick', stroke: RENAME_COLOR,
+      }));
+      const rLabel = svgEl('text', { x: rx + 3, y: y - 4, class: 'corp-label', fill: RENAME_COLOR });
+      rLabel.textContent = `renamed to ${r.name}`;
+      g.appendChild(wrapIfWiki(rLabel, r.wiki || c.wiki));
+    }
 
     svg.appendChild(g);
   }
