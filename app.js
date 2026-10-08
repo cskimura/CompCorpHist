@@ -196,17 +196,6 @@ function render(corporation, events, order, nowStr) {
     viewBox: `0 0 ${width} ${maxHeight}`, preserveAspectRatio: 'xMinYMin meet',
   });
 
-  const defs = svgEl('defs');
-  for (const [kind, style] of Object.entries(KIND_STYLE)) {
-    const marker = svgEl('marker', {
-      id: `arrow-${kind}`, markerWidth: 8, markerHeight: 8, refx: 7, refy: 3,
-      orient: 'auto', markerUnits: 'strokeWidth',
-    });
-    marker.appendChild(svgEl('path', { d: 'M0,0 L0,6 L7,3 z', fill: style.color }));
-    defs.appendChild(marker);
-  }
-  svg.appendChild(defs);
-
   // year grid
   for (let year = 1900; year <= endYear; year += 5) {
     const xPos = (year - 1900) * YEAR_WIDTH;
@@ -283,7 +272,8 @@ function render(corporation, events, order, nowStr) {
     // stop short of the target's lifeline so the arrowhead tip touches it
     // instead of overlapping/piercing through its stroke.
     const ARROW_GAP = 6;
-    const y2Arrow = y2 + (y1 < y2 ? -ARROW_GAP : ARROW_GAP);
+    const pointingDown = y1 < y2;
+    const y2Arrow = y2 + (pointingDown ? -ARROW_GAP : ARROW_GAP);
 
     const g = svgEl('g', {
       class: 'event', 'data-source': e.source, 'data-target': e.target, 'data-kind': e.kind,
@@ -292,8 +282,20 @@ function render(corporation, events, order, nowStr) {
       x1: x, y1, x2: x, y2: y2Arrow, class: 'event-line',
       stroke: style.color, 'stroke-width': style.width,
       'stroke-dasharray': style.dash || '',
-      'marker-end': `url(#arrow-${e.kind})`,
     }));
+
+    // draw the arrowhead ourselves (as a plain triangle) instead of relying
+    // on SVG marker-end: since every event line is perfectly vertical this
+    // is simpler and avoids marker refX/orient="auto" misalignment quirks.
+    const arrowScale = style.width / 1.5;
+    const arrowHalfWidth = 4 * arrowScale;
+    const arrowHeight = 7 * arrowScale;
+    const baseY = y2Arrow + (pointingDown ? -arrowHeight : arrowHeight);
+    g.appendChild(svgEl('polygon', {
+      points: `${x},${y2Arrow} ${x - arrowHalfWidth},${baseY} ${x + arrowHalfWidth},${baseY}`,
+      fill: style.color,
+    }));
+
     g.appendChild(svgEl('circle', { cx: x, cy: y1, r: 3, fill: style.color }));
     const label = svgEl('text', { x: x + 4, y: (y1 + y2) / 2, class: 'event-label', fill: style.color });
     label.textContent = e.label;
@@ -354,8 +356,23 @@ function setupPanZoom(svg, initialWidth, initialHeight) {
   const MIN_W = initialWidth / 20;
   const MAX_W = initialWidth * 3;
 
+  // Text lives in the same zoomable coordinate space as everything else, so
+  // without correction it grows/shrinks with the view and never actually
+  // gets any less crowded when you zoom in. Counter-scale every label around
+  // its own anchor point so its on-screen size stays constant, and only
+  // reveal event labels once the user has zoomed in enough to have room.
+  const labelEls = Array.from(svg.querySelectorAll('.corp-label, .event-label')).map(el => ({
+    el, x: parseFloat(el.getAttribute('x')), y: parseFloat(el.getAttribute('y')),
+  }));
+  const EVENT_LABEL_ZOOM_THRESHOLD = 0.35;
+
   function apply() {
     svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`);
+    const zoomRatio = view.w / initialWidth;
+    for (const { el, x, y } of labelEls) {
+      el.setAttribute('transform', `translate(${x} ${y}) scale(${zoomRatio}) translate(${-x} ${-y})`);
+    }
+    svg.classList.toggle('zoomed-in', zoomRatio < EVENT_LABEL_ZOOM_THRESHOLD);
   }
 
   function clientToSvg(clientX, clientY) {
