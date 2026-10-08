@@ -5,6 +5,9 @@
 <title>Computer Corporation History</title>
 <style>
   body { font-family: sans-serif; margin: 0; padding: 1em; }
+  h1 { font-size: 2.6em; margin: 0 0 0.3em; }
+  p.hint { color: #666; font-size: 1.1em; }
+  p.version { color: #999; font-size: 0.85em; margin-top: 0.3em; }
   #app { width: 100%; height: 85vh; overflow: hidden; border: 1px solid #ccc; }
   #chart { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
   #chart.dragging { cursor: grabbing; }
@@ -18,12 +21,12 @@
   .corp.dim, .event.dim { opacity: 0.12; }
   .corp.focus .corp-line { stroke-width: 3; }
   .event.focus .event-line { stroke-width: 3; }
-  p.hint { color: #666; font-size: 13px; }
 </style>
 </head>
 <body>
 <h1>Computer Corporation History</h1>
 <p class="hint">企業の線またはラベルをクリックすると関連するイベントだけハイライトされます(背景クリックで解除)。ホイールでズーム、ドラッグまたはWASDキーで移動できます。</p>
+<p class="version" id="version"></p>
 <div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 <script src="app.js"></script>

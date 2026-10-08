@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Write version info
+        run: |
+          echo "{\"commit\":\"$(git rev-parse --short HEAD)\",\"date\":\"$(date -u +'%Y-%m-%d %H:%M UTC')\"}" > version.json
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

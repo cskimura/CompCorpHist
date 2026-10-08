@@ -24,6 +24,18 @@ const KIND_STYLE = {
 const RENAME_COLOR = '#444';
 
 main();
+showVersion();
+
+async function showVersion() {
+  const el = document.getElementById('version');
+  if (!el) return;
+  try {
+    const info = await fetch('version.json', { cache: 'no-store' }).then(r => r.json());
+    el.textContent = `version: ${info.commit} (deployed ${info.date})`;
+  } catch {
+    el.textContent = '';
+  }
+}
 
 async function main() {
   const text = await fetch('data.yaml').then(r => r.text());
@@ -273,16 +285,7 @@ function render(corporation, events, order, nowStr) {
     // instead of overlapping/piercing through its stroke.
     const ARROW_GAP = 6;
     const pointingDown = y1 < y2;
-    const y2Arrow = y2 + (pointingDown ? -ARROW_GAP : ARROW_GAP);
-
-    const g = svgEl('g', {
-      class: 'event', 'data-source': e.source, 'data-target': e.target, 'data-kind': e.kind,
-    });
-    g.appendChild(svgEl('line', {
-      x1: x, y1, x2: x, y2: y2Arrow, class: 'event-line',
-      stroke: style.color, 'stroke-width': style.width,
-      'stroke-dasharray': style.dash || '',
-    }));
+    const tipY = y2 + (pointingDown ? -ARROW_GAP : ARROW_GAP);
 
     // draw the arrowhead ourselves (as a plain triangle) instead of relying
     // on SVG marker-end: since every event line is perfectly vertical this
@@ -290,9 +293,20 @@ function render(corporation, events, order, nowStr) {
     const arrowScale = style.width / 1.5;
     const arrowHalfWidth = 4 * arrowScale;
     const arrowHeight = 7 * arrowScale;
-    const baseY = y2Arrow + (pointingDown ? -arrowHeight : arrowHeight);
+    const baseY = tipY + (pointingDown ? -arrowHeight : arrowHeight);
+
+    const g = svgEl('g', {
+      class: 'event', 'data-source': e.source, 'data-target': e.target, 'data-kind': e.kind,
+    });
+    // the line stops at the back of the arrowhead, not its tip, so it doesn't
+    // visibly poke out past the point of the triangle.
+    g.appendChild(svgEl('line', {
+      x1: x, y1, x2: x, y2: baseY, class: 'event-line',
+      stroke: style.color, 'stroke-width': style.width,
+      'stroke-dasharray': style.dash || '',
+    }));
     g.appendChild(svgEl('polygon', {
-      points: `${x},${y2Arrow} ${x - arrowHalfWidth},${baseY} ${x + arrowHalfWidth},${baseY}`,
+      points: `${x},${tipY} ${x - arrowHalfWidth},${baseY} ${x + arrowHalfWidth},${baseY}`,
       fill: style.color,
     }));
 
