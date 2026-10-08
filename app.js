@@ -23,6 +23,18 @@ const KIND_STYLE = {
 
 const RENAME_COLOR = '#444';
 
+const KIND_LABEL_JA = {
+  acquired: '買収',
+  merged: '合併',
+  'spun-off': '分社・スピンオフ',
+  'carved-out': '事業の切り出し',
+  invested: '出資',
+  partnership: '業務提携',
+  transfer: '事業譲渡',
+  subsidiary: '子会社化',
+  divested: '事業売却(一部)',
+};
+
 main();
 showVersion();
 
@@ -289,10 +301,11 @@ function render(corporation, events, order, nowStr) {
     // draw the arrowhead ourselves (as a plain triangle) instead of relying
     // on SVG marker-end: since every event line is perfectly vertical this
     // is simpler and avoids marker refX/orient="auto" misalignment quirks.
-    const arrowScale = style.width / 1.5;
-    const arrowHalfWidth = 4 * arrowScale;
-    const arrowHeight = 7 * arrowScale;
-    const baseY = tipY + (pointingDown ? -arrowHeight : arrowHeight);
+    // Fixed size regardless of the line's stroke-width, so e.g. "merged"
+    // (drawn thicker) doesn't get an oversized arrowhead too.
+    const ARROW_HALF_WIDTH = 4;
+    const ARROW_HEIGHT = 7;
+    const baseY = tipY + (pointingDown ? -ARROW_HEIGHT : ARROW_HEIGHT);
 
     const g = svgEl('g', {
       class: 'event', 'data-source': e.source, 'data-target': e.target, 'data-kind': e.kind,
@@ -305,7 +318,7 @@ function render(corporation, events, order, nowStr) {
       'stroke-dasharray': style.dash || '',
     }));
     g.appendChild(svgEl('polygon', {
-      points: `${x},${tipY} ${x - arrowHalfWidth},${baseY} ${x + arrowHalfWidth},${baseY}`,
+      points: `${x},${tipY} ${x - ARROW_HALF_WIDTH},${baseY} ${x + ARROW_HALF_WIDTH},${baseY}`,
       fill: style.color,
     }));
 
@@ -331,9 +344,30 @@ function render(corporation, events, order, nowStr) {
     yearLabels.push({ el, x: xPos });
   }
 
-  document.getElementById('app').appendChild(svg);
+  const app = document.getElementById('app');
+  app.appendChild(svg);
+  app.appendChild(buildLegend());
   setupInteraction(svg, neighbors);
   setupPanZoom(svg, width, maxHeight, yearHeaderBg, yearLabels);
+}
+
+function buildLegend() {
+  const legend = document.createElement('div');
+  legend.id = 'legend';
+  for (const [kind, style] of Object.entries(KIND_STYLE)) {
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    const swatch = document.createElement('span');
+    swatch.className = 'legend-swatch';
+    swatch.style.borderTopColor = style.color;
+    swatch.style.borderTopStyle = style.dash ? 'dashed' : 'solid';
+    item.appendChild(swatch);
+    const text = document.createElement('span');
+    text.textContent = KIND_LABEL_JA[kind] || kind;
+    item.appendChild(text);
+    legend.appendChild(item);
+  }
+  return legend;
 }
 
 function buildNeighborIndex(events) {
