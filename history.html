@@ -5,7 +5,9 @@
 <title>Computer Corporation History</title>
 <style>
   body { font-family: sans-serif; margin: 0; padding: 1em; }
-  #app { overflow-x: auto; }
+  #app { width: 100%; height: 85vh; overflow: hidden; border: 1px solid #ccc; }
+  #chart { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+  #chart.dragging { cursor: grabbing; }
   .year-label { font-size: 11px; fill: #555; }
   .grid-line { stroke: #ddd; stroke-width: 1; }
   .corp-line { stroke: #333; stroke-width: 2; cursor: pointer; }
@@ -20,7 +22,7 @@
 </head>
 <body>
 <h1>Computer Corporation History</h1>
-<p class="hint">企業の線またはラベルをクリックすると関連するイベントだけハイライトされます。背景クリックで解除。</p>
+<p class="hint">企業の線またはラベルをクリックすると関連するイベントだけハイライトされます(背景クリックで解除)。ホイールでズーム、ドラッグまたはWASDキーで移動できます。</p>
 <div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 <script src="app.js"></script>

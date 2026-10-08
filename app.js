@@ -191,7 +191,10 @@ function render(corporation, events, order, nowStr) {
   const endYear = parseInt(nowStr.slice(0, 4), 10) + 1;
   const width = (endYear - 1900) * YEAR_WIDTH + 200;
 
-  const svg = svgEl('svg', { width, height: maxHeight, id: 'chart' });
+  const svg = svgEl('svg', {
+    width, height: maxHeight, id: 'chart',
+    viewBox: `0 0 ${width} ${maxHeight}`, preserveAspectRatio: 'xMinYMin meet',
+  });
 
   const defs = svgEl('defs');
   for (const [kind, style] of Object.entries(KIND_STYLE)) {
@@ -301,6 +304,7 @@ function render(corporation, events, order, nowStr) {
 
   document.getElementById('app').appendChild(svg);
   setupInteraction(svg, neighbors);
+  setupPanZoom(svg, width, maxHeight);
 }
 
 function buildNeighborIndex(events) {
@@ -341,4 +345,89 @@ function setupInteraction(svg, neighbors) {
   });
 
   svg.addEventListener('click', clear);
+}
+
+// --- pan & zoom (Google Maps style: wheel to zoom, drag to pan, WASD to pan) ---
+
+function setupPanZoom(svg, initialWidth, initialHeight) {
+  const view = { x: 0, y: 0, w: initialWidth, h: initialHeight };
+  const MIN_W = initialWidth / 20;
+  const MAX_W = initialWidth * 3;
+
+  function apply() {
+    svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`);
+  }
+
+  function clientToSvg(clientX, clientY) {
+    const rect = svg.getBoundingClientRect();
+    return {
+      x: view.x + (clientX - rect.left) / rect.width * view.w,
+      y: view.y + (clientY - rect.top) / rect.height * view.h,
+    };
+  }
+
+  svg.addEventListener('wheel', ev => {
+    ev.preventDefault();
+    const zoomFactor = ev.deltaY < 0 ? 0.9 : 1.1;
+    const cursor = clientToSvg(ev.clientX, ev.clientY);
+    const newW = Math.min(MAX_W, Math.max(MIN_W, view.w * zoomFactor));
+    const scale = newW / view.w;
+    view.x = cursor.x - (cursor.x - view.x) * scale;
+    view.y = cursor.y - (cursor.y - view.y) * scale;
+    view.w = newW;
+    view.h = view.h * scale;
+    apply();
+  }, { passive: false });
+
+  let dragging = false;
+  let dragStart = null;
+  let moved = false;
+
+  svg.addEventListener('mousedown', ev => {
+    if (ev.button !== 0) return;
+    dragging = true;
+    moved = false;
+    dragStart = { clientX: ev.clientX, clientY: ev.clientY, viewX: view.x, viewY: view.y };
+    svg.classList.add('dragging');
+  });
+
+  window.addEventListener('mousemove', ev => {
+    if (!dragging) return;
+    const rect = svg.getBoundingClientRect();
+    const dx = (ev.clientX - dragStart.clientX) / rect.width * view.w;
+    const dy = (ev.clientY - dragStart.clientY) / rect.height * view.h;
+    if (Math.abs(ev.clientX - dragStart.clientX) > 3 || Math.abs(ev.clientY - dragStart.clientY) > 3) {
+      moved = true;
+    }
+    view.x = dragStart.viewX - dx;
+    view.y = dragStart.viewY - dy;
+    apply();
+  });
+
+  window.addEventListener('mouseup', () => {
+    dragging = false;
+    svg.classList.remove('dragging');
+  });
+
+  // suppress the click-to-highlight behavior when the mouseup was really the end of a drag
+  svg.addEventListener('click', ev => {
+    if (moved) {
+      ev.stopPropagation();
+      moved = false;
+    }
+  }, true);
+
+  const PAN_STEP_FRACTION = 0.08;
+  window.addEventListener('keydown', ev => {
+    const key = ev.key.toLowerCase();
+    const stepX = view.w * PAN_STEP_FRACTION;
+    const stepY = view.h * PAN_STEP_FRACTION;
+    if (key === 'w') view.y -= stepY;
+    else if (key === 's') view.y += stepY;
+    else if (key === 'a') view.x -= stepX;
+    else if (key === 'd') view.x += stepX;
+    else return;
+    ev.preventDefault();
+    apply();
+  });
 }
