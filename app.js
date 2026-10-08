@@ -208,10 +208,9 @@ function render(corporation, events, order, nowStr) {
     viewBox: `0 0 ${width} ${maxHeight}`, preserveAspectRatio: 'xMinYMin meet',
   });
 
-  // year grid
+  // year grid lines (scroll normally with the content)
   for (let year = 1900; year <= endYear; year += 5) {
     const xPos = (year - 1900) * YEAR_WIDTH;
-    svg.appendChild(svgEl('text', { x: xPos, y: BASE_H - 6, class: 'year-label' })).textContent = year;
     svg.appendChild(svgEl('line', {
       x1: xPos, y1: BASE_H, x2: xPos, y2: maxHeight, class: 'grid-line',
     }));
@@ -318,9 +317,23 @@ function render(corporation, events, order, nowStr) {
     svg.appendChild(g);
   }
 
+  // year header: drawn last (on top) and repositioned by setupPanZoom so it
+  // stays pinned to the top of the viewport while panning/zooming - like a
+  // frozen spreadsheet header or a map's axis labels.
+  const yearHeaderBg = svgEl('rect', { x: 0, y: 0, width, height: BASE_H, fill: 'white', class: 'year-header-bg' });
+  svg.appendChild(yearHeaderBg);
+  const yearLabels = [];
+  for (let year = 1900; year <= endYear; year += 5) {
+    const xPos = (year - 1900) * YEAR_WIDTH;
+    const el = svgEl('text', { x: xPos, y: BASE_H - 6, class: 'year-label' });
+    el.textContent = year;
+    svg.appendChild(el);
+    yearLabels.push({ el, x: xPos });
+  }
+
   document.getElementById('app').appendChild(svg);
   setupInteraction(svg, neighbors);
-  setupPanZoom(svg, width, maxHeight);
+  setupPanZoom(svg, width, maxHeight, yearHeaderBg, yearLabels);
 }
 
 function buildNeighborIndex(events) {
@@ -365,7 +378,7 @@ function setupInteraction(svg, neighbors) {
 
 // --- pan & zoom (Google Maps style: wheel to zoom, drag to pan, WASD to pan) ---
 
-function setupPanZoom(svg, contentWidth, contentHeight) {
+function setupPanZoom(svg, contentWidth, contentHeight, yearHeaderBg, yearLabels) {
   // Fitting the *entire* (very tall) chart into the container's aspect ratio
   // on load would shrink everything - including text - to a fraction of its
   // authored size. Instead, show the full time axis at its natural scale and
@@ -400,6 +413,21 @@ function setupPanZoom(svg, contentWidth, contentHeight) {
       el.setAttribute('transform', `translate(${x} ${y}) scale(${zoomRatio}) translate(${-x} ${-y})`);
     }
     svg.classList.toggle('zoomed-in', zoomRatio < EVENT_LABEL_ZOOM_THRESHOLD);
+
+    // pin the year header to the top of the viewport (x still follows pan/zoom)
+    if (yearHeaderBg) {
+      yearHeaderBg.setAttribute('y', view.y);
+      yearHeaderBg.setAttribute('x', view.x);
+      yearHeaderBg.setAttribute('width', view.w);
+      yearHeaderBg.setAttribute('height', BASE_H * zoomRatio);
+    }
+    if (yearLabels) {
+      const y = view.y + (BASE_H - 6) * zoomRatio;
+      for (const { el, x } of yearLabels) {
+        el.setAttribute('y', y);
+        el.setAttribute('transform', `translate(${x} ${y}) scale(${zoomRatio}) translate(${-x} ${-y})`);
+      }
+    }
   }
   apply();
 
