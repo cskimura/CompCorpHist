@@ -351,10 +351,23 @@ function setupInteraction(svg, neighbors) {
 
 // --- pan & zoom (Google Maps style: wheel to zoom, drag to pan, WASD to pan) ---
 
-function setupPanZoom(svg, initialWidth, initialHeight) {
-  const view = { x: 0, y: 0, w: initialWidth, h: initialHeight };
-  const MIN_W = initialWidth / 20;
-  const MAX_W = initialWidth * 3;
+function setupPanZoom(svg, contentWidth, contentHeight) {
+  // Fitting the *entire* (very tall) chart into the container's aspect ratio
+  // on load would shrink everything - including text - to a fraction of its
+  // authored size. Instead, show the full time axis at its natural scale and
+  // crop vertically; the user pans/zooms from there, map-style.
+  const rect = svg.getBoundingClientRect();
+  const containerAspect = rect.width / rect.height;
+  let initW = contentWidth;
+  let initH = contentWidth / containerAspect;
+  if (initH > contentHeight) {
+    initH = contentHeight;
+    initW = contentHeight * containerAspect;
+  }
+
+  const view = { x: 0, y: 0, w: initW, h: initH };
+  const MIN_W = contentWidth / 20;
+  const MAX_W = contentWidth * 3;
 
   // Text lives in the same zoomable coordinate space as everything else, so
   // without correction it grows/shrinks with the view and never actually
@@ -368,12 +381,13 @@ function setupPanZoom(svg, initialWidth, initialHeight) {
 
   function apply() {
     svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`);
-    const zoomRatio = view.w / initialWidth;
+    const zoomRatio = view.w / initW;
     for (const { el, x, y } of labelEls) {
       el.setAttribute('transform', `translate(${x} ${y}) scale(${zoomRatio}) translate(${-x} ${-y})`);
     }
     svg.classList.toggle('zoomed-in', zoomRatio < EVENT_LABEL_ZOOM_THRESHOLD);
   }
+  apply();
 
   function clientToSvg(clientX, clientY) {
     const rect = svg.getBoundingClientRect();
