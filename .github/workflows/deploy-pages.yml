@@ -15,6 +15,10 @@ jobs:
       - name: Write version info
         run: |
           echo "{\"commit\":\"$(git rev-parse --short HEAD)\",\"date\":\"$(date -u +'%Y-%m-%d %H:%M UTC')\"}" > version.json
+          # .gitignore (which excludes version.json for local dev) would
+          # otherwise make the deploy step's own `git add` skip the file it
+          # just wrote, so drop it from what actually gets published.
+          rm -f .gitignore
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
